@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace comic_net
+namespace ComicXKCD.Web
 {
     public class BundleConfig
     {
@@ -21,6 +21,16 @@ namespace comic_net
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/appbase")
+                .Include("~/js/app.js")
+                .Include("~/js/factories/url-factory.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/comic")
+                .Include("~/js/factories/comic-factory.js")
+                .Include("~/js/controllers/comic-controller.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

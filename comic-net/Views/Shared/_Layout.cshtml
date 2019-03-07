@@ -1,19 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    string url = string.Format("{0}://{1}:{2}/", Request.Url.Scheme, Request.Url.Host, Request.Url.Port);
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="@url" />
     <title>@ViewBag.Title | ComicApp</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body ng-app="comic">
     <div class="container body-content">
         @RenderBody()
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/appbase")
     @RenderSection("scripts", required: false)
 </body>
 </html>

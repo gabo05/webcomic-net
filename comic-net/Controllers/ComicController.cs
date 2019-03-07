@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ComicXKCD.Api;
 
-namespace comic_net.Controllers
+namespace ComicXKCD.Web.Controllers
 {
     public class ComicController : Controller
     {
@@ -12,6 +13,11 @@ namespace comic_net.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        [HttpGet]
+        public JsonResult Today()
+        {
+            return Json(ComicApi.GetTodayComic(), JsonRequestBehavior.AllowGet);
         }
     }
 }

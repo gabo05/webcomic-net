@@ -4,5 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row" ng-controller="comicController">
+    <div class="col-sm-12">
+        <h1>Comic XKCD</h1>
+        <h2>{{ comic.title }}</h2>
+        <div class="card col-sm">
+            <img ng-src="{{comic.img}}" alt="{{comic.alt}}" />
+            <div class="card-body">
+                <p>{{comic.alt}}</p>
+                <a ng-if="comic.num > 1" href="#" class="btn btn-primary">Previous</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+@section scripts{
+    @Scripts.Render("~/bundles/comic")
+}

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace comic_net
+namespace ComicXKCD.Web
 {
     public class RouteConfig
     {
