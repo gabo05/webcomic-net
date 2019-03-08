@@ -10,7 +10,7 @@ namespace ComicXKCD.Web.Controllers
     public class ComicController : Controller
     {
         // GET: Comic
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             return View();
         }
@@ -18,6 +18,10 @@ namespace ComicXKCD.Web.Controllers
         public JsonResult Today()
         {
             return Json(ComicApi.GetTodayComic(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Comic(int id)
+        {
+            return Json(ComicApi.GetByNumber(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -14,6 +14,19 @@
                             reject(err);
                         });
                 });
+            },
+            getByNum: (num) => {
+                return new Promise((resolve, reject) => {
+                    $http.get(urlf.base() + `Comic/Comic/${num}`)
+                        .then((response) => {
+                            if (response.data.Success)
+                                resolve(response.data);
+                            else
+                                reject(response.data);
+                        }, (err) => {
+                            reject(err);
+                        });
+                });
             }
         };
     }]);
