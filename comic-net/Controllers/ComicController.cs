@@ -19,9 +19,9 @@ namespace ComicXKCD.Web.Controllers
         {
             return Json(ComicApi.GetTodayComic(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Comic(int id)
+        public JsonResult Comic(int id, ComicApi.Direction dir = ComicApi.Direction.Next)
         {
-            return Json(ComicApi.GetByNumber(id), JsonRequestBehavior.AllowGet);
+            return Json(ComicApi.GetByNumber(id, dir), JsonRequestBehavior.AllowGet);
         }
     }
 }

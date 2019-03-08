@@ -15,9 +15,9 @@
                         });
                 });
             },
-            getByNum: (num) => {
+            getByNum: (num, dir) => {
                 return new Promise((resolve, reject) => {
-                    $http.get(urlf.base() + `Comic/Comic/${num}`)
+                    $http.get(urlf.base() + `Comic/Comic/${num}?dir=${dir}`)
                         .then((response) => {
                             if (response.data.Success)
                                 resolve(response.data);

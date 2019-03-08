@@ -13,8 +13,8 @@
                     console.error(err);
                 })
         };
-        $scope.loadComicByNum = (num) => {
-            comicFact.getByNum(num)
+        $scope.loadComicByNum = (num, dir) => {
+            comicFact.getByNum(num, dir)
                 .then((result) => {
                     $scope.comic = result.Data;
                     $scope.last = parseInt(result.Message);
@@ -33,19 +33,19 @@
         const iid = parseInt(id);
 
         if (!isNaN(iid)) {
-            $scope.loadComicByNum(iid);
+            $scope.loadComicByNum(iid, 'Next');
         }
 
         $scope.previous = (e) => {
             e.preventDefault();
             if ($scope.comic.num > 1) {
-                $scope.loadComicByNum($scope.comic.num - 1);
+                $scope.loadComicByNum($scope.comic.num - 1, 'Prev');
             }
         };
         $scope.next = (e) => {
             e.preventDefault();
             if ($scope.comic.num < $scope.last) {
-                $scope.loadComicByNum($scope.comic.num + 1);
+                $scope.loadComicByNum($scope.comic.num + 1, 'Next');
             }
         };
     }]);

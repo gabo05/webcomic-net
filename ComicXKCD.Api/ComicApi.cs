@@ -10,6 +10,7 @@ namespace ComicXKCD.Api
 {
     public class ComicApi
     {
+        public enum Direction { Prev, Next };
         private const string API_BASE = "https://xkcd.com/";
         /// <summary>
         /// Returns today's comic
@@ -44,14 +45,14 @@ namespace ComicXKCD.Api
         /// </summary>
         /// <param name="num">Comic's number to retrieve</param>
         /// <returns></returns>
-        public static Result<Comic> GetByNumber(int num)
+        public static Result<Comic> GetByNumber(int num, Direction dir = Direction.Next)
         {
             var today = GetTodayComic();
             if (num < 1)
             {
                 num = 1;
             }
-            else if (today.Success && today.Data.num < num)
+            else if (today.Success && today.Data.num <= num)
             {
                 return today;
             }
@@ -73,10 +74,15 @@ namespace ComicXKCD.Api
                     Message = today.Data.num.ToString()
                 };
             }
+            else if(num < today.Data.num)
+            {
+                int nnum = dir == Direction.Next ? num + 1 : num - 1;
+                return GetByNumber(nnum, dir);
+            }
             return new Result<Comic>()
             {
                 Success = false,
-                Message = "An error occurred retrieving the data"
+                Message = "Comic not found"
             };
         }
     }
